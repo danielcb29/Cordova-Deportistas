@@ -17,7 +17,8 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('LoginCtrl', function($scope){})
+.controller('IngresoCtrl', function($scope){
+})
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
