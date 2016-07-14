@@ -1,6 +1,8 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('ListadoCtrl', function($scope) {
+  console.log("listado");
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
@@ -17,7 +19,19 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('IngresoCtrl', function($scope){
+.controller('IngresoCtrl', function($scope, Usuario,$window){
+  var vm = this;
+  vm.funciones = {
+    ingreso : function(){
+      console.log("submit");
+      Usuario.ingresoUsuario(vm.usuario).then(function(response){
+        console.log(response.id);
+        $window.location.href = "#/tabs/listado";
+      }, function(response){
+          console.log("Error en la peticion login");
+      })
+    }
+  }
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {

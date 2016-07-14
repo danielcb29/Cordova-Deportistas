@@ -1,8 +1,27 @@
 <ion-view view-title="Iniciar Sesion">
-  <ion-content>
-    <h2 class="title" align="center">Bienvenido a la aplicación móvil para interacción REST con SIND COLDEPORTES</h2>
-    <p align="center">
-    Esta aplicación es un proyecto desarrollado por Daniel Correa, estudiante de la Universidad del Valle, Colombia, para probar la comunicación interoperable bajo el protocolo REST de un servidor Django desplegado bajo el proyecto SIND COLDEPORTES y una aplicación móvil desarrollada con Apache Cordova (Angular JS)
-    </p>
-  </ion-content>
+
+	<ion-content style="text-align:center;">
+		<br>
+		<img src="img/LogoSND.png" alt="Loo del SIND" style="display:inline-block;">
+		<h3 class="title">Bienvenido a la aplicación móvil para interacción REST con SIND COLDEPORTES</h3>
+		<p>
+		Esta aplicación es un proyecto desarrollado por Daniel Correa, estudiante de la Universidad del Valle, Colombia, para probar la comunicación interoperable bajo el protocolo REST de un servidor Django desplegado bajo el proyecto SIND COLDEPORTES y una aplicación móvil desarrollada con Apache Cordova (Angular JS)
+		</p>
+		<br>
+		<form ng-submit="vm.funciones.ingreso()" id="form-ingreso">
+			<div class="list">
+				<label class="item item-input">
+			    	<input type="text" placeholder="Nombre Usuario" required ng-model="vm.usuario.username">
+			  	</label>
+			  	<label class="item item-input">
+			    	<input type="password" placeholder="Contraseña" required ng-model="vm.usuario.password">
+			  	</label>
+			  	<label class="item item-input">
+			    	<input type="text" placeholder="Entidad" required ng-model="vm.usuario.entidad">
+			  	</label>
+			  	<br>
+			  	<input class="button button-dark" type="submit" value="Ingresar">
+			</div>
+		</form>
+	</ion-content>
 </ion-view>
