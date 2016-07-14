@@ -17,7 +17,19 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('IngresoCtrl', function($scope){
+.controller('IngresoCtrl', function($scope, Usuario){
+  var vm = this;
+  vm.funciones = {
+    ingreso : function(){
+      console.log("submit");
+      Usuario.ingresoUsuario(vm.usuario).then(function(response){
+          console.log(response);
+      }, function(response){
+          console.log("error");
+          console.log(response);
+      })
+    }
+  }
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {

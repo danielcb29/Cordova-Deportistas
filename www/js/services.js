@@ -1,5 +1,20 @@
 angular.module('starter.services', [])
 
+.factory("Usuario", function ($http) {
+    var interfaz = {
+      ingresoUsuario : function(usuario){
+        var ing_url = "http://localhost:8089/entidades/appMovil/login/";
+        data = {"name":usuario.username,"pw":usuario.password, "entidad": usuario.entidad};
+        return $http.get(ing_url,{params: data}).then(function(response){
+            return response.data;
+        });
+      }
+    }
+
+    return interfaz;
+})
+
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 

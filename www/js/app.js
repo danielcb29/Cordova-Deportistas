@@ -41,8 +41,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
    .state('ingreso', {
     url: '/ingreso',
     templateUrl: 'templates/ingreso.html',
+    controllerAs: "vm",
     controller: 'IngresoCtrl'
-  }) 
+  })
   // Each tab has its own nav history stack:
 
   .state('tab.dash', {
