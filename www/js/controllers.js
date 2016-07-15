@@ -1,7 +1,6 @@
 angular.module('starter.controllers', [])
 
 .controller('ListadoCtrl', function($scope) {
-  console.log("listado");
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {
@@ -19,16 +18,24 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('IngresoCtrl', function($scope, Usuario,$window){
+.controller('IngresoCtrl', function($scope, Usuario,$window, $ionicPopup){
   var vm = this;
   vm.funciones = {
     ingreso : function(){
-      console.log("submit");
       Usuario.ingresoUsuario(vm.usuario).then(function(response){
-        console.log(response.id);
-        $window.location.href = "#/tab/listado";
+        if(response.id !=null){
+          $window.location.href = "#/tab/listado";
+        }else{
+          $ionicPopup.alert({
+            title: "Error en el inicio de sesión",
+            template: "El usuario, la contraseña o la entidad estan erradas"
+          });
+        }
       }, function(response){
-          console.log("Error en la peticion login");
+        $ionicPopup.alert({
+          title: "Error en el inicio de sesión",
+          template: "El usuario, la contraseña o la entidad estan erradas"
+        });
       })
     }
   }
