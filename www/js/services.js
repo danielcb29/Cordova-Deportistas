@@ -1,13 +1,43 @@
+var servidor = "localhost:8089";
 angular.module('starter.services', [])
 
+.factory("Deportista",function($http) {
+  var interfaz = {
+    listadoDeportistas: function(entidad,header){
+      var get_url = "http://"+entidad+"."+servidor+"/rest/deportistas/basico";
+      return $http({method: 'GET' , url: get_url,withCredentials: true}).then(function(response){
+        return response.data;
+      });
+    }
+  }
+  return interfaz;
+})
+
 .factory("Usuario", function ($http) {
+    var entidad_consultas;
+    var usuario_consultas;
     var interfaz = {
       ingresoUsuario : function(usuario){
-        var ing_url = "http://localhost:8089/entidades/appMovil/login/";
+        var ing_url = "http://"+servidor+"/entidades/appMovil/login/";
+        //var ing_url = "http://"+usuario.entidad+"localhost:8089/rest/api-auth/login/";
         data = {"name":usuario.username,"pw":usuario.password, "entidad": usuario.entidad};
+        //data = {"usernaname":usuario.username,"password":usuario.password};
         return $http.get(ing_url,{params: data}).then(function(response){
+            entidad_consultas = usuario.entidad;
+            usuario_consultas = usuario;
             return response.data;
         });
+      },
+
+      getEntidad : function(){
+        return entidad_consultas;
+      },
+
+      getHeader : function(peticion){
+        return {
+          'Authorization' : ('Basic ' + btoa(usuario_consultas.username +':' + usuario_consultas.password))
+        }
+
       }
     }
 

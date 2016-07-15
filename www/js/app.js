@@ -5,12 +5,13 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCookies'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $http, $cookies) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
@@ -22,9 +23,38 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   });
 })
+.provider('myCSRF',[function(){
+  var headerName = 'X-CSRFToken';
+  var cookieName = 'csrftoken';
+  var allowedMethods = ['GET'];
 
-.config(function($stateProvider, $urlRouterProvider) {
-
+  this.setHeaderName = function(n) {
+    headerName = n;
+  }
+  this.setCookieName = function(n) {
+    cookieName = n;
+  }
+  this.setAllowedMethods = function(n) {
+    allowedMethods = n;
+  }
+  this.$get = ['$cookies', function($cookies){
+    return {
+      'request': function(config) {
+        if(allowedMethods.indexOf(config.method) === -1) {
+          // do something on success
+          config.headers[headerName] = $cookies[cookieName];
+        }
+        return config;
+      }
+    }
+  }];
+}])
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+  $httpProvider.interceptors.push('myCSRF');
+  $httpProvider.defaults.cookieName = 'sessionid';
+  $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+  $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+  $httpProvider.defaults.withCredentials = true;
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.

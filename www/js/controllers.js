@@ -1,6 +1,20 @@
 angular.module('starter.controllers', [])
 
-.controller('ListadoCtrl', function($scope) {
+.controller('ListadoCtrl', function($scope,Usuario,Deportista, $ionicPopup, $cookies) {
+  var entidad = Usuario.getEntidad();
+  var header = Usuario.getHeader();
+  console.log("header",header);
+  console.log($cookies.getAll());
+  $scope.entidad = entidad;
+  Deportista.listadoDeportistas(entidad,header).then(function(response){
+    $scope.deportistas = response.results;
+    console.log(response);
+  },function(response){
+    $ionicPopup.alert({
+      title: "Error en la obtención de deportistas",
+      template: "El servidor a fallado, intentelo de nuevo en unos minutos"
+    });
+  })
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {
@@ -18,12 +32,13 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('IngresoCtrl', function($scope, Usuario,$window, $ionicPopup){
+.controller('IngresoCtrl', function($scope, Usuario,$window, $ionicPopup, $location){
   var vm = this;
   vm.funciones = {
     ingreso : function(){
       Usuario.ingresoUsuario(vm.usuario).then(function(response){
         if(response.id !=null){
+          //$location.path("#/tab/listado");
           $window.location.href = "#/tab/listado";
         }else{
           $ionicPopup.alert({
