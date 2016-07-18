@@ -16,8 +16,11 @@ angular.module('starter.services', [])
       });
     },
 
-    get : function(id){
-      var get_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/basico/"+id;
+    get : function(id,entidad){
+      var get_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/basico/"+id+"/?entidad="+entidad;
+      return $http.get(get_url).then(function(response){
+        return response.data;
+      });
     },
 
 

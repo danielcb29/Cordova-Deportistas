@@ -14,7 +14,6 @@ angular.module('starter.controllers', [])
       $scope.anterior = response.previous;
       $scope.despues = response.next;
       $scope.getPage = get_page;
-      console.log(response);
     },function(response){
       $ionicPopup.alert({
         title: "Error en la obtención de deportistas",
@@ -28,8 +27,15 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('DeportistaDetailCtrl', function($scope, $stateParams, Deportista) {
-  $scope.deportista = Deportista.get($stateParams.deporId);
+.controller('DeportistaDetailCtrl', function($scope, $stateParams, Deportista, $ionicPopup) {
+  Deportista.get($stateParams.deporId,$stateParams.entidad).then(function(response){
+    $scope.deportista = response;
+  }, function(response){
+    $ionicPopup.alert({
+      title: "Error en la obtención de deportista",
+      template: "El servidor a fallado, intentelo de nuevo en unos minutos"
+    });
+  });
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {
@@ -73,8 +79,6 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+.controller('SalirCtrl', function($scope,$window) {
+  $window.location.href = "#/ingreso";
 });

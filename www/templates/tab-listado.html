@@ -1,7 +1,7 @@
 <ion-view view-title="Listado Deportistas">
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="depor in deportistas" type="item-text-wrap">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="depor in deportistas" type="item-text-wrap" href="#/tab/listado/{{depor.id}}/{{depor.entidad}}">
         <img ng-if="depor.foto" ng-src="{{depor.foto}}" width="40px" height="40px">
         <img ng-hide="depor.foto" ng-src="img/depor_default.png" width="40px" height="40px">
         <h2>{{depor.nombres}} {{depor.apellidos}}</h2>

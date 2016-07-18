@@ -87,7 +87,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
 
   .state('tab.depor-detail', {
-    url: '/listado/:deporId',
+    url: '/listado/:deporId/:entidad',
     views: {
       'tab-listado': {
         templateUrl: 'templates/depor-detail.html',
@@ -107,12 +107,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     })
 
 
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.salir', {
+    url: '/salir',
     views: {
-      'tab-account': {
+      'tab-salir': {
         templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+        controller: 'SalirCtrl'
       }
     }
   });

@@ -6,6 +6,7 @@
 -->
 <ion-view view-title="{{deportista.nombres}} {{deportista.apellidos}}">
   <ion-content class="padding">
+    <h3>{{deportista.nombres}} {{deportista.apellidos}}</h3>
     <img ng-if="deportista.foto" ng-src="{{deportista.foto}}" style="width: 64px; height: 64px">
     <img ng-hide="deportista.foto" ng-src="img/depor_default.png" style="width: 64px; height: 64px">
     <p>
