@@ -1,8 +1,7 @@
 angular.module('starter.controllers', [])
 
-.controller('ListadoCtrl', function($scope,Usuario,Deportista, $ionicPopup, $cookies) {
-  var entidad = Usuario.getEntidad();
-  var header = Usuario.getHeader();
+.controller('ListadoCtrl', function($scope,Deportista, $ionicPopup, $cookies) {
+  var entidad = Deportista.getEntidad();
   $scope.entidad = entidad;
 
   var get_page = function getPage(url){
@@ -10,7 +9,7 @@ angular.module('starter.controllers', [])
   };
 
   function loadList(url){
-    Deportista.listadoDeportistas(entidad,url).then(function(response){
+    Deportista.listadoDeportistas(url).then(function(response){
       $scope.deportistas = response.results;
       $scope.anterior = response.previous;
       $scope.despues = response.next;
@@ -27,6 +26,10 @@ angular.module('starter.controllers', [])
   loadList(null);
 
 
+})
+
+.controller('DeportistaDetailCtrl', function($scope, $stateParams, Deportista) {
+  $scope.deportista = Deportista.get($stateParams.deporId);
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {
@@ -68,9 +71,7 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
+
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
