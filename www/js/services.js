@@ -4,8 +4,12 @@ angular.module('starter.services', [])
 
 .factory("Deportista",function($http) {
   var interfaz = {
-    listadoDeportistas: function(entidad,header){
-      var get_url = "http://"+entidad+servidor+"/rest/deportistas/basico";
+    listadoDeportistas: function(entidad,url){
+      var get_url = url;
+      if(!url){
+          get_url = "http://"+entidad+servidor+"/rest/deportistas/basico";
+      }
+
       return $http({method: 'GET' , url: get_url,withCredentials: true}).then(function(response){
         return response.data;
       });

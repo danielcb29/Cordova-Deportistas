@@ -3,18 +3,30 @@ angular.module('starter.controllers', [])
 .controller('ListadoCtrl', function($scope,Usuario,Deportista, $ionicPopup, $cookies) {
   var entidad = Usuario.getEntidad();
   var header = Usuario.getHeader();
-  console.log("header",header);
-  console.log($cookies.getAll());
   $scope.entidad = entidad;
-  Deportista.listadoDeportistas(entidad,header).then(function(response){
-    $scope.deportistas = response.results;
-    console.log(response);
-  },function(response){
-    $ionicPopup.alert({
-      title: "Error en la obtención de deportistas",
-      template: "El servidor a fallado, intentelo de nuevo en unos minutos"
+
+  var get_page = function getPage(url){
+    return loadList(url);
+  };
+
+  function loadList(url){
+    Deportista.listadoDeportistas(entidad,url).then(function(response){
+      $scope.deportistas = response.results;
+      $scope.anterior = response.previous;
+      $scope.despues = response.next;
+      $scope.getPage = get_page;
+      console.log(response);
+    },function(response){
+      $ionicPopup.alert({
+        title: "Error en la obtención de deportistas",
+        template: "El servidor a fallado, intentelo de nuevo en unos minutos"
+      });
     });
-  })
+  };
+
+  loadList(null);
+
+
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {

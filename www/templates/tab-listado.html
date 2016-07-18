@@ -7,11 +7,13 @@
         <h2>{{depor.nombres}} {{depor.apellidos}}</h2>
         <p>{{depor.tipo_id}} : {{depor.identificacion}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
-
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Editar
-        </ion-option-button>
       </ion-item>
+      <button ng-if="anterior" class="button button-energized" ng-click="getPage(anterior)">
+        Atras
+      </button>
+      <button ng-if="despues" class="button button-balanced" ng-click="getPage(despues)">
+        Siguiente
+      </button>
     </ion-list>
   </ion-content>
 </ion-view>
