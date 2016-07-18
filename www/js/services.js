@@ -1,10 +1,11 @@
 var servidor = "localhost:8089";
+//var servidor = "sndcoldeportes.com";
 angular.module('starter.services', [])
 
 .factory("Deportista",function($http) {
   var interfaz = {
     listadoDeportistas: function(entidad,header){
-      var get_url = "http://"+entidad+"."+servidor+"/rest/deportistas/basico";
+      var get_url = "http://"+entidad+servidor+"/rest/deportistas/basico";
       return $http({method: 'GET' , url: get_url,withCredentials: true}).then(function(response){
         return response.data;
       });
@@ -24,13 +25,19 @@ angular.module('starter.services', [])
         //data = {"usernaname":usuario.username,"password":usuario.password};
         return $http.get(ing_url,{params: data}).then(function(response){
             entidad_consultas = usuario.entidad;
+            if(usuario.entidad == 'public'){
+              entidad_consultas = "";
+            }
             usuario_consultas = usuario;
             return response.data;
         });
       },
 
       getEntidad : function(){
-        return entidad_consultas;
+        if(entidad_consultas == ""){
+          return entidad_consultas;
+        }
+        return entidad_consultas + ".";
       },
 
       getHeader : function(peticion){
