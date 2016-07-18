@@ -8,12 +8,14 @@
         <p>{{depor.tipo_id}} : {{depor.identificacion}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
-      <button ng-if="anterior" class="button button-energized" ng-click="getPage(anterior)">
-        Atras
-      </button>
-      <button ng-if="despues" class="button button-balanced" ng-click="getPage(despues)">
-        Siguiente
-      </button>
+      <div class="button-bar bar-stable">
+        <button ng-if="anterior" class="button button-calm" ng-click="getPage(anterior)">
+          <i class="ion-chevron-left"></i> Atras
+        </button>
+        <button ng-if="despues" class="button button-positive" ng-click="getPage(despues)">
+          Siguiente <i class="ion-chevron-right"></i>
+        </button>
+      </div>
     </ion-list>
   </ion-content>
 </ion-view>
