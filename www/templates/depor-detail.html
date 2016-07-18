@@ -6,11 +6,36 @@
 -->
 <ion-view view-title="{{deportista.nombres}} {{deportista.apellidos}}">
   <ion-content class="padding">
-    <h3>{{deportista.nombres}} {{deportista.apellidos}}</h3>
-    <img ng-if="deportista.foto" ng-src="{{deportista.foto}}" style="width: 64px; height: 64px">
-    <img ng-hide="deportista.foto" ng-src="img/depor_default.png" style="width: 64px; height: 64px">
-    <p>
-      {{deportista.identificacion}}
-    </p>
+    <div class="row">
+      <div class="col col-50">
+        <h3 align="center">{{deportista.nombres}} {{deportista.apellidos}}</h3>
+      </div>
+      <div class="col">
+        <button class="button button-positive">
+          <i class="icon ion-edit"></i>
+        </button>
+      </div>
+      <div class="col">
+        <button class="button button-energized">
+          <i class="icon ion-trash-a"></i>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <img ng-if="deportista.foto" ng-src="{{deportista.foto}}" style="width: 80px; height: 80px">
+        <img ng-hide="deportista.foto" ng-src="img/depor_default.png" style="width: 80px; height: 80px">
+      </div>
+      <div class="col col-75">
+        <p>
+          <b>Entidad:</b> {{deportista.entidad | uppercase}}<br>
+          <b>Identificación:</b> {{deportista.identificacion}}<br>
+          <b>Tipo de Identificación:</b> {{deportista.tipo_id}}<br>
+          <b>Genero:</b> {{deportista.genero}}<br>
+          <b>Fecha Nacimiento:</b> {{deportista.fecha_nacimiento}}
+
+        </p>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
