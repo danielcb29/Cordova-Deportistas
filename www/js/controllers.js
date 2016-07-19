@@ -28,8 +28,27 @@ angular.module('starter.controllers', [])
 })
 
 .controller('DeportistaDetailCtrl', function($scope, $stateParams, Deportista, $ionicPopup) {
+  
+  var cambio_estado = function cambioEstado(){
+
+  };
+
   Deportista.get($stateParams.deporId,$stateParams.entidad).then(function(response){
     $scope.deportista = response;
+    var entidad = Deportista.getEntidad();
+    console.log(entidad);
+    if(entidad == $stateParams.entidad){
+      $scope.editable = true;
+      if (response.estado == 1){
+        $scope.activado = true;
+      }else{
+        $scope.activado = false;
+      }
+      $scope.cambioEstado = cambio_estado;  
+    }else{
+      $scope.editable = false;
+    }
+    
   }, function(response){
     $ionicPopup.alert({
       title: "Error en la obtención de deportista",

@@ -23,9 +23,20 @@ angular.module('starter.services', [])
       });
     },
 
+    cambioEstado : function(id){
+      var delete_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/basico/"+id;
+      return $http.delete(get_url).then(function(response){
+        return response.data;
+      });
+    },
 
     getEntidad : function(){
-      return entidad_consultas;
+      if(entidad_consultas == ""){
+        return "Publica";
+      }else{
+        return entidad_consultas.slice(0,-1);  
+      }
+      
     }
   }
   return interfaz;
