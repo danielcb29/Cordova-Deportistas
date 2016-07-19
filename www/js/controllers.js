@@ -27,7 +27,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('DeportistaDetailCtrl', function($scope, $stateParams, Deportista, $ionicPopup) {
+.controller('DeportistaDetailCtrl', function($scope, $stateParams, Deportista, Corporal ,$ionicPopup) {
 
   var cambio_estado = function cambioEstado(id){
     Deportista.cambioEstado(id).then(function(response){
@@ -46,8 +46,6 @@ angular.module('starter.controllers', [])
   Deportista.get($stateParams.deporId,$stateParams.entidad).then(function(response){
     $scope.deportista = response;
     var entidad = Deportista.getEntidad();
-    console.log(entidad);
-    console.log(response.estado);
     if((entidad != $stateParams.entidad) || (response.estado != 'ACTIVO' && response.estado != 'INACTIVO')){
       $scope.editable = false;
     }else{
@@ -66,6 +64,18 @@ angular.module('starter.controllers', [])
       template: "El servidor a fallado, intentelo de nuevo en unos minutos"
     });
   });
+
+  Corporal.get($stateParams.deporId,$stateParams.entidad).then(function(response){
+    var resultados = response.results;
+    if(resultados.length > 0){
+        $scope.has_corporal = true;
+        $scope.corporal = response.results[0];
+    }else{
+      $scope.has_corporal = false;
+    }
+    console.log(response);
+  });
+
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {

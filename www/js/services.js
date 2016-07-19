@@ -34,11 +34,24 @@ angular.module('starter.services', [])
       if(entidad_consultas == ""){
         return "Publica";
       }else{
-        return entidad_consultas.slice(0,-1);  
+        return entidad_consultas.slice(0,-1);
       }
-      
+
     }
   }
+  return interfaz;
+})
+
+.factory("Corporal", function($http){
+  var interfaz = {
+    get : function(id,entidad){
+      var get_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/corporal/?deportista="+id+"&entidad="+entidad;
+      return $http.get(get_url).then(function(response){
+        return response.data;
+      })
+    }
+  }
+
   return interfaz;
 })
 

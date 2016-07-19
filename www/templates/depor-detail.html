@@ -67,12 +67,27 @@
     <div class="row">
       <h4>Composicion Corporal</h4>
     </div>
-    <div class="row card">
+    <div ng-if="has_corporal == false" class="row card"><p><b>No hay registros en el sistema</b></p></div>
+    <div ng-if="has_corporal == true" class="row card">
         <div class="col col-50">
-          kjshdjadh
+          <p>
+            <b>Peso:</b> {{corporal.peso}}<br>
+            <b>Estatura:</b> {{corporal.estatura}}<br>
+            <b>RH:</b> {{corporal.RH}}<br>
+            <b>Porcentaje Grasa:</b> {{corporal.porcentaje_grasa}}<br>
+            <b>Masa Corporal Magra:</b> {{corporal.masa_corporal_magra}}<br>
+            <b>IMC:</b> {{corporal.imc}}
+          </p>
         </div>
         <div class="col col-50">
-          sakjhjsa
+          <p>
+            <b>Tipo Talla:</b> {{corporal.tipo_talla}}<br>
+            <b>Talla Camisa:</b> {{corporal.talla_camisa}}<br>
+            <b>Talla Pantaloneta:</b> {{corporal.talla_pantaloneta}}<br>
+            <b>Talla Zapato:</b> {{corporal.talla_zapato}}<br>
+            <b>Fecha de inicio deporte:</b> {{corporal.fecha_inicia_deporte}}<br>
+            <b>EPS:</b> {{corporal.eps}}
+          </p>
         </div>
     </div>
   </ion-content>
