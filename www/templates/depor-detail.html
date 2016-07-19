@@ -90,5 +90,76 @@
           </p>
         </div>
     </div>
+
+    <div class="row">
+      <h4>Historial Deportivo</h4>
+    </div>
+    <div ng-if="has_deportivo == false" class="row card"><p><b>No hay registros en el sistema</b></p></div>
+    <div class="row card" ng-repeat="d in deportivo">
+        <div class="col col-50">
+          <p>
+            <b>Nombre Campeonato:</b> {{d.nombre}}<br>
+            <b>Fecha Inicial:</b> {{d.fecha_inicial}}<br>
+            <b>Fecha Final:</b> {{d.fecha_final}}
+          </p>
+        </div>
+        <div class="col col-50">
+          <p>
+            <b>Tipo de campeonato:</b> {{d.tipo}}<br>
+            <b>Lugar:</b> {{d.pais}}<br>
+            <b>Puesto:</b> {{d.puesto}}
+          </p>
+        </div>
+    </div>
+
+    <div class="row">
+      <h4>Formación Académica</h4>
+    </div>
+    <div ng-if="has_academico == false" class="row card"><p><b>No hay registros en el sistema</b></p></div>
+    <div class="row card" ng-repeat="a in academico">
+        <div class="col col-50">
+          <p>
+            <b>Nivel:</b> {{a.nivel}}<br>
+            <b>Institución:</b> {{a.institucion}}<br>
+            <b>País:</b> {{a.pais}}
+
+          </p>
+        </div>
+        <div class="col col-50">
+          <p>
+            <b>Estado:</b> {{a.estado}}<br>
+            <b>Fecha Finalización: </b> {{a.fecha_finalizacion || "No Aplica"}}
+          </p>
+        </div>
+    </div>
+
+    <div class="row">
+      <h4>Información Adicional</h4>
+    </div>
+    <div ng-if="has_adicional == false" class="row card"><p><b>No hay registros en el sistema</b></p></div>
+    <div class="row card" ng-if="has_adicional == true">
+        <div class="col">
+          <p>
+            <b>Usa centros biomedicos:</b> {{adicional.usa_centros_biomedicos}}<br>
+            <b>Beneficiario programa apoyo:</b> {{adicional.es_beneficiario_programa_apoyo}}
+          </p>
+        </div>
+    </div>
+
+    <div class="row">
+      <h4>Historial Lesiones</h4>
+    </div>
+    <div ng-if="has_lesiones == false" class="row card"><p><b>No hay registros en el sistema</b></p></div>
+    <div class="row card" ng-repeat="l in lesiones">
+        <div class="col">
+          <p>
+            <b>Tipo Lesion:</b> {{l.tipo_lesion}}<br>
+            <b>Fecha Lesion:</b> {{l.fecha_lesion}}<br>
+            <b>Periodo Rehabilitación:</b> {{l.periodo_rehabilitacion}} <br>
+            <b>Segmento Corporal:</b> {{l.segmento_corporal}}
+          </p>
+        </div>
+    </div>
+
   </ion-content>
 </ion-view>

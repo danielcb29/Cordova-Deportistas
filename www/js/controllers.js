@@ -27,7 +27,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('DeportistaDetailCtrl', function($scope, $stateParams, Deportista, Corporal ,$ionicPopup) {
+.controller('DeportistaDetailCtrl', function($scope, $stateParams, Deportista, Corporal, Deportivo, Academico, Adicional, Lesiones ,$ionicPopup) {
 
   var cambio_estado = function cambioEstado(id){
     Deportista.cambioEstado(id).then(function(response){
@@ -73,7 +73,46 @@ angular.module('starter.controllers', [])
     }else{
       $scope.has_corporal = false;
     }
-    console.log(response);
+  });
+
+  Deportivo.get($stateParams.deporId,$stateParams.entidad).then(function(response){
+    var resultados = response.results;
+    if(resultados.length > 0){
+        $scope.has_deportivo = true;
+        $scope.deportivo = response.results;
+    }else{
+      $scope.has_deportivo = false;
+    }
+  });
+
+  Academico.get($stateParams.deporId,$stateParams.entidad).then(function(response){
+    var resultados = response.results;
+    if(resultados.length > 0){
+        $scope.has_academico = true;
+        $scope.academico = response.results;
+    }else{
+      $scope.has_academico = false;
+    }
+  });
+
+  Adicional.get($stateParams.deporId,$stateParams.entidad).then(function(response){
+    var resultados = response.results;
+    if(resultados.length > 0){
+        $scope.has_adicional = true;
+        $scope.adicional = response.results[0];
+    }else{
+      $scope.has_adicional = false;
+    }
+  });
+
+  Lesiones.get($stateParams.deporId,$stateParams.entidad).then(function(response){
+    var resultados = response.results;
+    if(resultados.length > 0){
+        $scope.has_lesiones = true;
+        $scope.lesiones = response.results;
+    }else{
+      $scope.has_lesiones = false;
+    }
   });
 
 })

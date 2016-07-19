@@ -55,6 +55,58 @@ angular.module('starter.services', [])
   return interfaz;
 })
 
+.factory("Deportivo", function($http){
+  var interfaz = {
+    get : function(id,entidad){
+      var get_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/deportivo/?deportista="+id+"&entidad="+entidad;
+      return $http.get(get_url).then(function(response){
+        return response.data;
+      })
+    }
+  }
+
+  return interfaz;
+})
+
+.factory("Academico", function($http){
+  var interfaz = {
+    get : function(id,entidad){
+      var get_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/academico/?deportista="+id+"&entidad="+entidad;
+      return $http.get(get_url).then(function(response){
+        return response.data;
+      })
+    }
+  }
+
+  return interfaz;
+})
+
+.factory("Adicional", function($http){
+  var interfaz = {
+    get : function(id,entidad){
+      var get_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/adicional/?deportista="+id+"&entidad="+entidad;
+      return $http.get(get_url).then(function(response){
+        return response.data;
+      })
+    }
+  }
+
+  return interfaz;
+})
+
+.factory("Lesiones", function($http){
+  var interfaz = {
+    get : function(id,entidad){
+      var get_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/lesiones/?deportista="+id+"&entidad="+entidad;
+      return $http.get(get_url).then(function(response){
+        return response.data;
+      })
+    }
+  }
+
+  return interfaz;
+})
+
 .factory("Usuario", function ($http) {
     var interfaz = {
       ingresoUsuario : function(usuario){
