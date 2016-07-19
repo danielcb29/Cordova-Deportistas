@@ -8,23 +8,24 @@
   <ion-content class="padding">
     <div class="row">
       <div class="col col-50">
-        <h3 align="center">{{deportista.nombres}} {{deportista.apellidos}}</h3>
+        <h3 align="center">{{deportista.nombres}} {{deportista.apellidos}} <br> <small>{{deportista.estado}}</small></h3>
+
       </div>
-      <div ng-if="editable">
-        <div class="col">
+
+        <div class="col" ng-if="editable">
           <button class="button button-positive">
             <i class="icon ion-edit"></i>
           </button>
         </div>
-        <div class="col">
-          <button ng-if="activado == false" class="button button-energized" ng-click="cambioEstado(deportista.id)">
+        <div class="col" ng-if="editable">
+          <button ng-if="activado == true" class="button button-energized" ng-click="cambioEstado(deportista.id)">
             <i class="icon ion-trash-a"></i>
           </button>
-          <button ng-if="activado == true" class="button button-balanced" ng-click="cambioEstado(deportista.id)">
+          <button ng-if="activado == false" class="button button-balanced" ng-click="cambioEstado(deportista.id)">
             <i class="icon ion-checkmark-circled"></i>
           </button>
         </div>
-      </div>
+
     </div>
     <div class="row">
       <div class="col">
@@ -39,6 +40,24 @@
           <b>Genero:</b> {{deportista.genero}}<br>
           <b>Fecha Nacimiento:</b> {{deportista.fecha_nacimiento}}
 
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-50">
+        <p>
+          <b>Barrio:</b> {{deportista.barrio}}<br>
+          <b>Comuna:</b> {{deportista.comuna}}<br>
+          <b>Email:</b> {{deportista.email || "Ninguno" }}<br>
+          <b>Telefono:</b> {{deportista.telefono}}<br>
+          <b>Dirección:</b> {{deportista.direccion}}
+        </p>
+      </div>
+      <div class="col col-50">
+        <p>
+          <b>LGTBI:</b> {{deportista.lgtbi}}<br>
+          <b>Etnia:</b> {{deportista.etnia || "Ninguna"}}<br>
+          <b>Video:</b> {{deportista.video || "Ninguno"}}<br>
         </p>
       </div>
     </div>

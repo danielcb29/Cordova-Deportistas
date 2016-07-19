@@ -28,7 +28,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('DeportistaDetailCtrl', function($scope, $stateParams, Deportista, $ionicPopup) {
-  
+
   var cambio_estado = function cambioEstado(id){
     Deportista.cambioEstado(id).then(function(response){
       $ionicPopup.alert({
@@ -48,18 +48,18 @@ angular.module('starter.controllers', [])
     var entidad = Deportista.getEntidad();
     console.log(entidad);
     console.log(response.estado);
-    if((entidad != $stateParams.entidad) || (response.estado != 1 && response.estado != 0)){
-      $scope.editable = false;  
+    if((entidad != $stateParams.entidad) || (response.estado != 'ACTIVO' && response.estado != 'INACTIVO')){
+      $scope.editable = false;
     }else{
       $scope.editable = true;
-      if (response.estado == 1){
-        $scope.activado = true;
-      }else{
+      if (response.estado == 'INACTIVO'){
         $scope.activado = false;
+      }else{
+        $scope.activado = true;
       }
       $scope.cambioEstado = cambio_estado;
     }
-    
+
   }, function(response){
     $ionicPopup.alert({
       title: "Error en la obtención de deportista",
