@@ -29,24 +29,35 @@ angular.module('starter.controllers', [])
 
 .controller('DeportistaDetailCtrl', function($scope, $stateParams, Deportista, $ionicPopup) {
   
-  var cambio_estado = function cambioEstado(){
-
+  var cambio_estado = function cambioEstado(id){
+    Deportista.cambioEstado(id).then(function(response){
+      $ionicPopup.alert({
+      title: "El deportista de ha activado/desactado correctamente",
+      template: "La operación ha resultado exitosa!"
+    });
+    },function(response){
+      $ionicPopup.alert({
+      title: "Error en la activacion/desactivacion de deportista",
+      template: "El servidor a fallado, intentelo de nuevo en unos minutos"
+    });
+    });
   };
 
   Deportista.get($stateParams.deporId,$stateParams.entidad).then(function(response){
     $scope.deportista = response;
     var entidad = Deportista.getEntidad();
     console.log(entidad);
-    if(entidad == $stateParams.entidad){
+    console.log(response.estado);
+    if((entidad != $stateParams.entidad) || (response.estado != 1 && response.estado != 0)){
+      $scope.editable = false;  
+    }else{
       $scope.editable = true;
       if (response.estado == 1){
         $scope.activado = true;
       }else{
         $scope.activado = false;
       }
-      $scope.cambioEstado = cambio_estado;  
-    }else{
-      $scope.editable = false;
+      $scope.cambioEstado = cambio_estado;
     }
     
   }, function(response){

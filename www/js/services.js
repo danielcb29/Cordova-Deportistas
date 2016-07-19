@@ -25,7 +25,7 @@ angular.module('starter.services', [])
 
     cambioEstado : function(id){
       var delete_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/basico/"+id;
-      return $http.delete(get_url).then(function(response){
+      return $http.delete(delete_url).then(function(response){
         return response.data;
       });
     },
