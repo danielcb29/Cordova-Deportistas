@@ -27,7 +27,7 @@
         </div>
 
     </div>
-    <div class="row">
+    <div class="row card">
       <div class="col">
         <img ng-if="deportista.foto" ng-src="{{deportista.foto}}" style="width: 80px; height: 80px">
         <img ng-hide="deportista.foto" ng-src="img/depor_default.png" style="width: 80px; height: 80px">
@@ -43,9 +43,10 @@
         </p>
       </div>
     </div>
-    <div class="row">
+    <div class="row card">
       <div class="col col-50">
         <p>
+          <b>Ciudad (Departamento):</b> {{deportista.ciudad_residencia}} ({{deportista.departamento}})<br>
           <b>Barrio:</b> {{deportista.barrio}}<br>
           <b>Comuna:</b> {{deportista.comuna}}<br>
           <b>Email:</b> {{deportista.email || "Ninguno" }}<br>
@@ -58,8 +59,21 @@
           <b>LGTBI:</b> {{deportista.lgtbi}}<br>
           <b>Etnia:</b> {{deportista.etnia || "Ninguna"}}<br>
           <b>Video:</b> {{deportista.video || "Ninguno"}}<br>
+          <b>Disciplinas:</b> {{deportista.disciplinas}}<br>
+          <b>Nacionalidad:</b> {{deportista.nacionalidad}}
         </p>
       </div>
+    </div>
+    <div class="row">
+      <h4>Composicion Corporal</h4>
+    </div>
+    <div class="row card">
+        <div class="col col-50">
+          kjshdjadh
+        </div>
+        <div class="col col-50">
+          sakjhjsa
+        </div>
     </div>
   </ion-content>
 </ion-view>
