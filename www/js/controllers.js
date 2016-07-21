@@ -117,7 +117,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ChatsCtrl', function($scope, Chats) {
+.controller('GestionDeportistaCtrl', function($scope, $location,Deportista) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -126,10 +126,65 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
+  var funciones = {
+
+    estoy : function(ruta){
+        return $location.path() == ruta;
+    },
+
+    registro : function(){
+
+      var d =  {
+            "nacionalidad": [
+                "Albania",
+                "Andorra"
+            ],
+            "ciudad_residencia": "Acacías",
+            "disciplinas": [
+                "Baloncesto",
+                "Natación"
+            ],
+            "departamento": "Meta",
+            "nombres": "yair",
+            "apellidos": "lopez",
+            "genero": "HOMBRE",
+            "tipo_id": "CC",
+            "identificacion": "5873244548",
+            "fecha_nacimiento": "2008-12-15",
+            "barrio": "SDSD",
+            "comuna": "10",
+            "email": "",
+            "telefono": "3232",
+            "direccion": "SDSD",
+            "lgtbi": false,
+            "etnia": "",
+            "video": "",
+            "foto": null
+        }
+
+      Deportista.registro(d).then(function(response){
+        console.log("registro ok desde controlado");
+      },function(response){
+        console.log("ha ocurido algun erro depor reg contorl");
+      });
+    },
+
+    index : function() {
+      if (funciones.estoy("/tab/registro")){
+        funciones.registro();
+      }else{
+        console.log("no estoy");
+      }
+    },
+
+    mostrarForm: function(){
+
+    }
   };
+
+  $scope.gestionDeportista = funciones;
+
+  funciones.mostrarForm();
 })
 
 .controller('IngresoCtrl', function($scope, Usuario,$window, $ionicPopup, $location){

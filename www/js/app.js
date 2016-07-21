@@ -11,8 +11,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
-    $http.defaults.headers.put['X-CSRFToken'] = $cookies.csrftoken;
+    $http.defaults.headers.post['X-CSRFToken'] = $cookies.get("csrftoken");
+    $http.defaults.headers.put['X-CSRFToken'] = $cookies.get("csrftoken");
     //$http.defaults.headers.delete['X-CSRFToken'] = $cookies.csrftoken;
 
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -29,7 +29,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 .provider('myCSRF',[function(){
   var headerName = 'X-CSRFToken';
   var cookieName = 'csrftoken';
-  var allowedMethods = ['GET'];
+  var allowedMethods = ['GET','POST','DELETE'];
 
   this.setHeaderName = function(n) {
     headerName = n;
@@ -99,12 +99,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.registro', {
+      url: '/registro',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-registro': {
+          templateUrl: 'templates/tab-registro.html',
+          controller: 'GestionDeportistaCtrl'
         }
       }
     })

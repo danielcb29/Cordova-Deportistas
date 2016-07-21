@@ -1,0 +1,107 @@
+<ion-view view-title="Registro Deportista">
+  <ion-content>
+    <br>
+    <h3 align="center">Información del Deportista</h3>
+    <br>
+    <div class="list">
+      <form id="form-deportista" ng-submit="gestionDeportista.index()">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Nombres</span>
+          <input type="text" placeholder="Nombres" ng-model="deportista.nombres">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Apellidos</span>
+          <input type="text" placeholder="Apellidos" ng-model="deportista.apellidos">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Genero</span>
+          <select ng-model="deportista.genero">
+            <option value="FEMENINO">FEMENINO</option>
+            <option value="MASCULINO">MASCULINO</option>
+          </select>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Tipo Identificación</span>
+          <input type="text" placeholder="Tipo Documento" ng-model="deportista.tipo_id">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Identificación</span>
+          <input type="text" placeholder="Identificación" ng-model="deportista.identificacion">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Video</span>
+          <input type="url" placeholder="Url del video youtube" ng-model="deportista.video">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Disciplinas Deportivas</span>
+          <select ng-model="deportista.disciplinas" multiple>
+            <option value="Ciclismo">Ciclismo</option>
+            <option value="Voleibol">Voleibol</option>
+            <option value="Natación">Natación</option>
+            <option value="Patinaje">Patinaje</option>
+            <option value="Fútbol">Fútbol</option>
+          </select>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Nacionalidad</span>
+          <select ng-model="deportista.nacionalidad" multiple="true">
+            <option value="Colombia">Colombia</option>
+            <option value="España">España</option>
+            <option value="Argentina">Argentina</option>
+            <option value="Albania">Albania</option>
+            <option value="Andorra">Andorra</option>
+          </select>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Foto</span>
+          <input type="url" placeholder="Url de la foto" ng-model="deportista.foto">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Telefono</span>
+          <input type="text" placeholder="Telefono" ng-model="deportista.telefono">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Dirección</span>
+          <input type="text" placeholder="Direccioón" ng-model="deportista.direccion">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Email</span>
+          <input type="text" placeholder="john@suhr.com" ng-model="deportista.email">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Ciudad</span>
+          <select ng-model="deportista.ciudad_residencia">
+            <option value="Acacías">Acacías</option>
+            <option value="Abriaquí">Abriaquí</option>
+            <option value="Aberrojal">Aberrojal</option>
+            <option value="Medellin">Medellin</option>
+            <option value="Santiago de Cali">Santiago de Cali</option>
+          </select>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Barrio</span>
+          <input type="text" placeholder="Barrio" ng-model="deportista.barrio">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Comuna</span>
+          <input type="text" placeholder="Comuna" ng-model="deportista.comuna">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Etnia</span>
+          <select ng-model="deportista.etnia">
+            <option value="MESTIZO">MESTIZO</option>
+            <option value="AFROCOLOMBIANO">AFROCOLOMBIANO</option>
+            <option value="BLANCO">BLANCO</option>
+            <option value="COLOMBOINDIGENA">COLOMBOINDIGENA</option>
+            <option value="GITANO">GITANO</option>
+            <option value="PALENQUERO">PALENQUERO</option>
+            <option value="RAIZAL">RAIZAL</option>
+          </select>
+        </label>
+          <ion-checkbox type="checkbox" ng-model="lgtbi"> LGTBI? </ion-checkbox>
+
+          <input class="button button-dark" type="submit" value="Siguiente">
+      </form>
+    </div>
+  </ion-content>
+</ion-view>
