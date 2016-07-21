@@ -26,7 +26,7 @@ angular.module('starter.services', [])
     cambioEstado : function(id){
       console.log($cookies.get("csrftoken"));
       var delete_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/basico/"+id;
-      return $http.delete(delete_url).then(function(response){
+      return $http({method:"DELETE", url:delete_url, headers: {'Content-Type': "application/json"}}).then(function(response){
         return response.data;
       });
     },
