@@ -24,16 +24,15 @@ angular.module('starter.services', [])
     },
 
     cambioEstado : function(id){
-      console.log($cookies.get("csrftoken"));
-      var delete_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/basico/"+id;
-      return $http({method:"DELETE", url:delete_url, headers: {'Content-Type': "application/json"}}).then(function(response){
+      var delete_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/basico/"+id+"/";
+      return $http({method:"DELETE", url:delete_url}).then(function(response){
         return response.data;
       });
     },
 
     registro : function(deportista){
-      var post = "http://"+entidad_consultas+servidor+"/rest/deportistas/basico";
-      return $http.post(post,deportista).then(function(response){
+      var post = "http://"+entidad_consultas+servidor+"/rest/deportistas/basico/";
+      return $http({method: 'POST', url:post, data:deportista, headers: {'Content-Type': 'application/json'} }).then(function(response){
         return response.data;
       });
     },

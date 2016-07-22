@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCookies'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCookies','ngRoute'])
 
 .run(function($ionicPlatform, $http, $cookies) {
   $ionicPlatform.ready(function() {
@@ -69,6 +69,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $httpProvider.defaults.xsrfCookieName = 'csrftoken';
   $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
   $httpProvider.defaults.withCredentials = true;
+
+
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.

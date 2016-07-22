@@ -27,14 +27,16 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('DeportistaDetailCtrl', function($scope, $stateParams, Deportista, Corporal, Deportivo, Academico, Adicional, Lesiones ,$ionicPopup) {
+.controller('DeportistaDetailCtrl', function($scope, $stateParams,$route, $state ,Deportista, Corporal, Deportivo, Academico, Adicional, Lesiones ,$ionicPopup) {
 
   var cambio_estado = function cambioEstado(id){
     Deportista.cambioEstado(id).then(function(response){
       $ionicPopup.alert({
-      title: "El deportista de ha activado/desactado correctamente",
+      title: "El deportista se ha activado/desactado correctamente",
       template: "La operación ha resultado exitosa!"
     });
+      //$route.reload();
+      $state.go($state.current, {}, {reload: true});
     },function(response){
       $ionicPopup.alert({
       title: "Error en la activacion/desactivacion de deportista",
@@ -166,6 +168,7 @@ angular.module('starter.controllers', [])
         console.log("registro ok desde controlado");
       },function(response){
         console.log("ha ocurido algun erro depor reg contorl");
+        console.log(response);
       });
     },
 
