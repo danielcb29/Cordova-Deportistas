@@ -1,6 +1,7 @@
 var servidor = "localhost:8089";
 var entidad_consultas;
-//var servidor = "sndcoldeportes.com";
+var token;
+
 angular.module('starter.services', [])
 
 .factory("Deportista",function($http, $cookies) {
@@ -8,31 +9,31 @@ angular.module('starter.services', [])
     listadoDeportistas: function(url){
       var get_url = url;
       if(!url){
-          get_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/basico";
+          get_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/basico/";
       }
 
-      return $http({method: 'GET' , url: get_url,withCredentials: true}).then(function(response){
+      return $http({method: 'GET' , url: get_url,withCredentials: true, headers: {'authorization': 'Token ' + token }}).then(function(response){
         return response.data;
       });
     },
 
     get : function(id,entidad){
       var get_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/basico/"+id+"/?entidad="+entidad;
-      return $http.get(get_url).then(function(response){
+      return $http({method: 'GET',url:get_url, headers: {'authorization': 'Token ' + token }}).then(function(response){
         return response.data;
       });
     },
 
     cambioEstado : function(id){
       var delete_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/basico/"+id+"/";
-      return $http({method:"DELETE", url:delete_url}).then(function(response){
+      return $http({method:"DELETE", url:delete_url, headers: {'authorization': 'Token ' + token }}).then(function(response){
         return response.data;
       });
     },
 
     registro : function(deportista){
       var post = "http://"+entidad_consultas+servidor+"/rest/deportistas/basico/";
-      return $http({method: 'POST', url:post, data:deportista, headers: {'Content-Type': 'application/json'} }).then(function(response){
+      return $http({method: 'POST', url:post, data:deportista, headers: {'Content-Type': 'application/json','authorization': 'Token ' + token } }).then(function(response){
         return response.data;
       });
     },
@@ -53,7 +54,7 @@ angular.module('starter.services', [])
   var interfaz = {
     get : function(id,entidad){
       var get_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/corporal/?deportista="+id+"&entidad="+entidad;
-      return $http.get(get_url).then(function(response){
+      return $http({method:'GET', url:get_url,headers: {'authorization': 'Token ' + token } }).then(function(response){
         return response.data;
       })
     }
@@ -66,7 +67,7 @@ angular.module('starter.services', [])
   var interfaz = {
     get : function(id,entidad){
       var get_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/deportivo/?deportista="+id+"&entidad="+entidad;
-      return $http.get(get_url).then(function(response){
+      return $http({method:'GET', url:get_url,headers: {'authorization': 'Token ' + token }} ).then(function(response){
         return response.data;
       })
     }
@@ -79,7 +80,7 @@ angular.module('starter.services', [])
   var interfaz = {
     get : function(id,entidad){
       var get_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/academico/?deportista="+id+"&entidad="+entidad;
-      return $http.get(get_url).then(function(response){
+      return $http({method:'GET', url:get_url,headers: {'authorization': 'Token ' + token }} ).then(function(response){
         return response.data;
       })
     }
@@ -92,7 +93,7 @@ angular.module('starter.services', [])
   var interfaz = {
     get : function(id,entidad){
       var get_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/adicional/?deportista="+id+"&entidad="+entidad;
-      return $http.get(get_url).then(function(response){
+      return $http({method:'GET', url:get_url,headers: {'authorization': 'Token ' + token }} ).then(function(response){
         return response.data;
       })
     }
@@ -105,7 +106,7 @@ angular.module('starter.services', [])
   var interfaz = {
     get : function(id,entidad){
       var get_url = "http://"+entidad_consultas+servidor+"/rest/deportistas/lesiones/?deportista="+id+"&entidad="+entidad;
-      return $http.get(get_url).then(function(response){
+      return $http({method:'GET', url:get_url,headers: {'authorization': 'Token ' + token }} ).then(function(response){
         return response.data;
       })
     }
@@ -117,14 +118,15 @@ angular.module('starter.services', [])
 .factory("Usuario", function ($http) {
     var interfaz = {
       ingresoUsuario : function(usuario){
-        var ing_url = "http://"+servidor+"/entidades/appMovil/login/";
-        data = {"name":usuario.username,"pw":usuario.password, "entidad": usuario.entidad};
-        return $http.get(ing_url,{params: data}).then(function(response){
-            entidad_consultas = usuario.entidad + ".";
-            if(usuario.entidad == 'public'){
-              entidad_consultas = "";
-            }
-            return response.data;
+        var url = "http://"+usuario.entidad+"."+servidor+"/rest/token-auth/"
+        return $http.post(url,usuario).then(function(response){
+          entidad_consultas = usuario.entidad + ".";
+          if(usuario.entidad == 'public'){
+            entidad_consultas = "";
+          }
+          token = response.data.token;
+
+          return response.data;
         });
       },
 

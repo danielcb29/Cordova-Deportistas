@@ -11,8 +11,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    $http.defaults.headers.post['X-CSRFToken'] = $cookies.get("csrftoken");
-    $http.defaults.headers.put['X-CSRFToken'] = $cookies.get("csrftoken");
+    //$http.defaults.headers.post['X-CSRFToken'] = $cookies.get("csrftoken");
+    //$http.defaults.headers.put['X-CSRFToken'] = $cookies.get("csrftoken");
     //$http.defaults.headers.delete['X-CSRFToken'] = $cookies.csrftoken;
 
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -63,12 +63,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   }];
 }])
+
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
-  $httpProvider.interceptors.push('myCSRF');
-  $httpProvider.defaults.cookieName = 'sessionid';
-  $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-  $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-  $httpProvider.defaults.withCredentials = true;
+  //$httpProvider.interceptors.push('myCSRF');
+  //$httpProvider.defaults.cookieName = 'sessionid';
+  //$httpProvider.defaults.xsrfCookieName = 'csrftoken';
+  //$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+  //$httpProvider.defaults.withCredentials = true;
 
 
   // Ionic uses AngularUI Router which uses the concept of states

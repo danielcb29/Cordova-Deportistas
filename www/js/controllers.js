@@ -35,8 +35,8 @@ angular.module('starter.controllers', [])
       title: "El deportista se ha activado/desactado correctamente",
       template: "La operación ha resultado exitosa!"
     });
-      //$route.reload();
-      $state.go($state.current, {}, {reload: true});
+      $route.reload();
+      //$state.go($state.current, {}, {reload: true});
     },function(response){
       $ionicPopup.alert({
       title: "Error en la activacion/desactivacion de deportista",
@@ -195,15 +195,7 @@ angular.module('starter.controllers', [])
   vm.funciones = {
     ingreso : function(){
       Usuario.ingresoUsuario(vm.usuario).then(function(response){
-        if(response.id !=null){
-          //$location.path("#/tab/listado");
           $window.location.href = "#/tab/listado";
-        }else{
-          $ionicPopup.alert({
-            title: "Error en el inicio de sesión",
-            template: "El usuario, la contraseña o la entidad estan erradas"
-          });
-        }
       }, function(response){
         $ionicPopup.alert({
           title: "Error en el inicio de sesión",
