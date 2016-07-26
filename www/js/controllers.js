@@ -119,7 +119,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('GestionDeportistaCtrl', function($scope, $location,Deportista) {
+.controller('GestionDeportistaCtrl', function($scope, $location,$stateParams,Deportista) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -147,11 +147,11 @@ angular.module('starter.controllers', [])
                 "Natación"
             ],
             "departamento": "Meta",
-            "nombres": "yair",
-            "apellidos": "lopez",
+            "nombres": "fernando",
+            "apellidos": "alonso",
             "genero": "HOMBRE",
             "tipo_id": "CC",
-            "identificacion": "5873244548",
+            "identificacion": "12639812867",
             "fecha_nacimiento": "2008-12-15",
             "barrio": "SDSD",
             "comuna": "10",
@@ -172,16 +172,39 @@ angular.module('starter.controllers', [])
       });
     },
 
+    edicion : function(){
+      var deportista = $scope.deportista;
+      console.log(deportista);
+      //deportista.nacionalidad = ["Colombia","Andorra"];
+      //deportista.apellidos = "lopez";
+      Deportista.edicion(deportista,$stateParams.deporId).then(function(response){
+          console.log("edicion correcta");
+          console.log(response);
+        }, function(response){
+          console.log("errorsini edicion");
+          console.log(response);
+        });
+
+    },
+
     index : function() {
       if (funciones.estoy("/tab/registro")){
         funciones.registro();
       }else{
-        console.log("no estoy");
+        funciones.edicion();
       }
     },
 
     mostrarForm: function(){
-
+      if (funciones.estoy("/tab/registro")){
+        
+      }else{
+        Deportista.get($stateParams.deporId,$stateParams.entidad).then(function(response){
+          $scope.deportista = response;
+        }, function(response){
+          console.log("error trayendo el depor");
+        });
+      }
     }
   };
 

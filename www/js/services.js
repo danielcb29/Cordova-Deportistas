@@ -38,6 +38,13 @@ angular.module('starter.services', [])
       });
     },
 
+    edicion : function(deportista, id){
+      var put = "http://"+entidad_consultas+servidor+"/rest/deportistas/basico/"+id+"/";
+      return $http({method:'PUT',url: put, headers: {'Content-Type': 'application/json','authorization': 'Token ' + token }}).then(function(response){
+        return response.data;
+      })
+    },
+
     getEntidad : function(){
       if(entidad_consultas == ""){
         return "Publica";

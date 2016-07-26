@@ -11,9 +11,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    //$http.defaults.headers.post['X-CSRFToken'] = $cookies.get("csrftoken");
-    //$http.defaults.headers.put['X-CSRFToken'] = $cookies.get("csrftoken");
-    //$http.defaults.headers.delete['X-CSRFToken'] = $cookies.csrftoken;
 
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -26,50 +23,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   });
 })
-.provider('myCSRF',[function(){
-  var headerName = 'X-CSRFToken';
-  var cookieName = 'csrftoken';
-  var allowedMethods = ['GET','POST','DELETE'];
-
-  this.setHeaderName = function(n) {
-    headerName = n;
-  }
-  this.setCookieName = function(n) {
-    cookieName = n;
-  }
-  this.setAllowedMethods = function(n) {
-    allowedMethods = n;
-  }
-  this.$get = ['$cookies', function($cookies){
-    return {
-      'request': function(config) {
-        if(allowedMethods.indexOf(config.method) === -1) {
-          // do something on success
-          config.headers[headerName] = $cookies[cookieName];
-        }
-        return config;
-      }
-    }
-  }];
-  this.$post = ['$cookies', function($cookies){
-    return {
-      'request': function(config) {
-        if(allowedMethods.indexOf(config.method) === -1) {
-          // do something on success
-          config.headers[headerName] = $cookies[cookieName];
-        }
-        return config;
-      }
-    }
-  }];
-}])
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
-  //$httpProvider.interceptors.push('myCSRF');
-  //$httpProvider.defaults.cookieName = 'sessionid';
-  //$httpProvider.defaults.xsrfCookieName = 'csrftoken';
-  //$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-  //$httpProvider.defaults.withCredentials = true;
 
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -123,6 +78,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
+  .state('tab.edicion', {
+    url: '/edicion/:deporId/:entidad',
+    views: {
+      'tab-listado': {
+        templateUrl: 'templates/tab-registro.html',
+        controller: 'GestionDeportistaCtrl'
+      }
+    }
+  })
 
   .state('tab.salir', {
     url: '/salir',

@@ -13,9 +13,9 @@
       </div>
 
         <div class="col" ng-if="editable">
-          <button class="button button-positive">
+          <a class="button button-positive" href="#tab/edicion/{{deportista.id}}/{{deportista.entidad}}">
             <i class="icon ion-edit"></i>
-          </button>
+          </a>
         </div>
         <div class="col" ng-if="editable">
           <button ng-if="activado == true" class="button button-energized" ng-click="cambioEstado(deportista.id)">
