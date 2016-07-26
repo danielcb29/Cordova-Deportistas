@@ -1,4 +1,4 @@
-var servidor = "localhost:8089";
+var servidor = "172.18.1.224:8089";
 var entidad_consultas;
 var token;
 
@@ -40,7 +40,7 @@ angular.module('starter.services', [])
 
     edicion : function(deportista, id){
       var put = "http://"+entidad_consultas+servidor+"/rest/deportistas/basico/"+id+"/";
-      return $http({method:'PUT',url: put, headers: {'Content-Type': 'application/json','authorization': 'Token ' + token }}).then(function(response){
+      return $http({method:'PUT',url: put, data:deportista,headers: {'Content-Type': 'application/json','authorization': 'Token ' + token }}).then(function(response){
         return response.data;
       })
     },

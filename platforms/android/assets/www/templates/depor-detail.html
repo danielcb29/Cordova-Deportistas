@@ -1,0 +1,165 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="{{deportista.nombres}} {{deportista.apellidos}}">
+  <ion-content class="padding">
+    <div class="row">
+      <div class="col col-50">
+        <h3 align="center">{{deportista.nombres}} {{deportista.apellidos}} <br> <small>{{deportista.estado}}</small></h3>
+
+      </div>
+
+        <div class="col" ng-if="editable">
+          <a class="button button-positive" href="#tab/edicion/{{deportista.id}}/{{deportista.entidad}}">
+            <i class="icon ion-edit"></i>
+          </a>
+        </div>
+        <div class="col" ng-if="editable">
+          <button ng-if="activado == true" class="button button-energized" ng-click="cambioEstado(deportista.id)">
+            <i class="icon ion-trash-a"></i>
+          </button>
+          <button ng-if="activado == false" class="button button-balanced" ng-click="cambioEstado(deportista.id)">
+            <i class="icon ion-checkmark-circled"></i>
+          </button>
+        </div>
+
+    </div>
+    <div class="row card">
+      <div class="col">
+        <img ng-if="deportista.foto" ng-src="{{deportista.foto}}" style="width: 80px; height: 80px">
+        <img ng-hide="deportista.foto" ng-src="img/depor_default.png" style="width: 80px; height: 80px">
+      </div>
+      <div class="col col-75">
+        <p>
+          <b>Entidad:</b> {{deportista.entidad | uppercase}}<br>
+          <b>Identificación:</b> {{deportista.identificacion}}<br>
+          <b>Tipo de Identificación:</b> {{deportista.tipo_id}}<br>
+          <b>Genero:</b> {{deportista.genero}}<br>
+          <b>Fecha Nacimiento:</b> {{deportista.fecha_nacimiento}}
+
+        </p>
+      </div>
+    </div>
+    <div class="row card">
+      <div class="col col-50">
+        <p>
+          <b>Ciudad (Departamento):</b> {{deportista.ciudad_residencia}} ({{deportista.departamento}})<br>
+          <b>Barrio:</b> {{deportista.barrio}}<br>
+          <b>Comuna:</b> {{deportista.comuna}}<br>
+          <b>Email:</b> {{deportista.email || "Ninguno" }}<br>
+          <b>Telefono:</b> {{deportista.telefono}}<br>
+          <b>Dirección:</b> {{deportista.direccion}}
+        </p>
+      </div>
+      <div class="col col-50">
+        <p>
+          <b>LGTBI:</b> {{deportista.lgtbi}}<br>
+          <b>Etnia:</b> {{deportista.etnia || "Ninguna"}}<br>
+          <b>Video:</b> {{deportista.video || "Ninguno"}}<br>
+          <b>Disciplinas:</b> {{deportista.disciplinas}}<br>
+          <b>Nacionalidad:</b> {{deportista.nacionalidad}}
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <h4>Composicion Corporal</h4>
+    </div>
+    <div ng-if="has_corporal == false" class="row card"><p><b>No hay registros en el sistema</b></p></div>
+    <div ng-if="has_corporal == true" class="row card">
+        <div class="col col-50">
+          <p>
+            <b>Peso:</b> {{corporal.peso}}<br>
+            <b>Estatura:</b> {{corporal.estatura}}<br>
+            <b>RH:</b> {{corporal.RH}}<br>
+            <b>Porcentaje Grasa:</b> {{corporal.porcentaje_grasa}}<br>
+            <b>Masa Corporal Magra:</b> {{corporal.masa_corporal_magra}}<br>
+            <b>IMC:</b> {{corporal.imc}}
+          </p>
+        </div>
+        <div class="col col-50">
+          <p>
+            <b>Tipo Talla:</b> {{corporal.tipo_talla}}<br>
+            <b>Talla Camisa:</b> {{corporal.talla_camisa}}<br>
+            <b>Talla Pantaloneta:</b> {{corporal.talla_pantaloneta}}<br>
+            <b>Talla Zapato:</b> {{corporal.talla_zapato}}<br>
+            <b>Fecha de inicio deporte:</b> {{corporal.fecha_inicia_deporte}}<br>
+            <b>EPS:</b> {{corporal.eps}}
+          </p>
+        </div>
+    </div>
+
+    <div class="row">
+      <h4>Historial Deportivo</h4>
+    </div>
+    <div ng-if="has_deportivo == false" class="row card"><p><b>No hay registros en el sistema</b></p></div>
+    <div class="row card" ng-repeat="d in deportivo">
+        <div class="col col-50">
+          <p>
+            <b>Nombre Campeonato:</b> {{d.nombre}}<br>
+            <b>Fecha Inicial:</b> {{d.fecha_inicial}}<br>
+            <b>Fecha Final:</b> {{d.fecha_final}}
+          </p>
+        </div>
+        <div class="col col-50">
+          <p>
+            <b>Tipo de campeonato:</b> {{d.tipo}}<br>
+            <b>Lugar:</b> {{d.pais}}<br>
+            <b>Puesto:</b> {{d.puesto}}
+          </p>
+        </div>
+    </div>
+
+    <div class="row">
+      <h4>Formación Académica</h4>
+    </div>
+    <div ng-if="has_academico == false" class="row card"><p><b>No hay registros en el sistema</b></p></div>
+    <div class="row card" ng-repeat="a in academico">
+        <div class="col col-50">
+          <p>
+            <b>Nivel:</b> {{a.nivel}}<br>
+            <b>Institución:</b> {{a.institucion}}<br>
+            <b>País:</b> {{a.pais}}
+
+          </p>
+        </div>
+        <div class="col col-50">
+          <p>
+            <b>Estado:</b> {{a.estado}}<br>
+            <b>Fecha Finalización: </b> {{a.fecha_finalizacion || "No Aplica"}}
+          </p>
+        </div>
+    </div>
+
+    <div class="row">
+      <h4>Información Adicional</h4>
+    </div>
+    <div ng-if="has_adicional == false" class="row card"><p><b>No hay registros en el sistema</b></p></div>
+    <div class="row card" ng-if="has_adicional == true">
+        <div class="col">
+          <p>
+            <b>Usa centros biomedicos:</b> {{adicional.usa_centros_biomedicos}}<br>
+            <b>Beneficiario programa apoyo:</b> {{adicional.es_beneficiario_programa_apoyo}}
+          </p>
+        </div>
+    </div>
+
+    <div class="row">
+      <h4>Historial Lesiones</h4>
+    </div>
+    <div ng-if="has_lesiones == false" class="row card"><p><b>No hay registros en el sistema</b></p></div>
+    <div class="row card" ng-repeat="l in lesiones">
+        <div class="col">
+          <p>
+            <b>Tipo Lesion:</b> {{l.tipo_lesion}}<br>
+            <b>Fecha Lesion:</b> {{l.fecha_lesion}}<br>
+            <b>Periodo Rehabilitación:</b> {{l.periodo_rehabilitacion}} <br>
+            <b>Segmento Corporal:</b> {{l.segmento_corporal}}
+          </p>
+        </div>
+    </div>
+
+  </ion-content>
+</ion-view>

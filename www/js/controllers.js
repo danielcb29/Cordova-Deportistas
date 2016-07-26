@@ -27,7 +27,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('DeportistaDetailCtrl', function($scope, $stateParams,$route, $state ,Deportista, Corporal, Deportivo, Academico, Adicional, Lesiones ,$ionicPopup) {
+.controller('DeportistaDetailCtrl', function($scope, $stateParams,$window, $state ,Deportista, Corporal, Deportivo, Academico, Adicional, Lesiones ,$ionicPopup) {
 
   var cambio_estado = function cambioEstado(id){
     Deportista.cambioEstado(id).then(function(response){
@@ -35,7 +35,10 @@ angular.module('starter.controllers', [])
       title: "El deportista se ha activado/desactado correctamente",
       template: "La operación ha resultado exitosa!"
     });
-      $route.reload();
+      $window.location.href = "#/tab/listado";
+      //$state.go($state.current, {}, {reload: true});
+      //$window.location.reload(true);
+      //$route.reload();
       //$state.go($state.current, {}, {reload: true});
     },function(response){
       $ionicPopup.alert({
@@ -147,11 +150,11 @@ angular.module('starter.controllers', [])
                 "Natación"
             ],
             "departamento": "Meta",
-            "nombres": "fernando",
-            "apellidos": "alonso",
+            "nombres": "mathew",
+            "apellidos": "alba",
             "genero": "HOMBRE",
             "tipo_id": "CC",
-            "identificacion": "12639812867",
+            "identificacion": "8955412",
             "fecha_nacimiento": "2008-12-15",
             "barrio": "SDSD",
             "comuna": "10",
@@ -197,7 +200,7 @@ angular.module('starter.controllers', [])
 
     mostrarForm: function(){
       if (funciones.estoy("/tab/registro")){
-        
+
       }else{
         Deportista.get($stateParams.deporId,$stateParams.entidad).then(function(response){
           $scope.deportista = response;
