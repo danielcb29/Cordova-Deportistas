@@ -1,4 +1,5 @@
 var servidor = "172.18.1.224:8089";
+//var servidor = "sndcoldeportes.com";
 var entidad_consultas;
 var token;
 

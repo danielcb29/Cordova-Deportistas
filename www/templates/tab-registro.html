@@ -3,7 +3,7 @@
     <br>
     <h3 align="center">Información del Deportista</h3>
     <br>
-    <div class="list">
+    <div class="list list-inset">
       <form id="form-deportista" ng-submit="gestionDeportista.index()">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Nombres</span>
@@ -99,8 +99,9 @@
           </select>
         </label>
           <ion-checkbox type="checkbox" ng-model="lgtbi"> LGTBI? </ion-checkbox>
-
-          <input class="button button-dark" type="submit" value="Siguiente">
+          <div class="button-bar bar-positive">
+            <button class="button button-positive" type="submit">Siguente <i class="ion-arrow-right-a"></i></button>
+          </div>
       </form>
     </div>
   </ion-content>
