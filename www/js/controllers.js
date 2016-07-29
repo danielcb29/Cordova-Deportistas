@@ -120,7 +120,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('GestionDeportistaCtrl', function($scope, $location,$stateParams,$ionicPopup,Deportista) {
+.controller('GestionDeportistaCtrl', function($scope, $location,$stateParams,$window,$filter,$ionicPopup,Deportista) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -128,15 +128,17 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-
-  var funciones = {
+  var vm = this;
+  vm.funciones = {
 
     estoy : function(ruta){
         return $location.path() == ruta;
     },
 
     registro : function(){
-      var deportista = $scope.deportista;
+      var deportista = vm.deportista;
+      deportista.fecha_nacimiento = new Date ($filter('date')(deportista.fecha_nacimiento, "yyyy-MM-dd"));
+      console.log(deportista);
       Deportista.registro(deportista).then(function(response){
         $ionicPopup.alert({
           title: "El registro ha sido correcto!",
@@ -153,7 +155,9 @@ angular.module('starter.controllers', [])
     },
 
     edicion : function(){
-      var deportista = $scope.deportista;
+      var deportista = vm.deportista;
+      deportista.fecha_nacimiento = new Date( $filter('date')(deportista.fecha_nacimiento, "yyyy-MM-dd"));
+      console.log(deportista);
 
       Deportista.edicion(deportista,$stateParams.deporId).then(function(response){
           $ionicPopup.alert({
@@ -172,19 +176,20 @@ angular.module('starter.controllers', [])
     },
 
     index : function() {
-      if (funciones.estoy("/tab/registro")){
-        funciones.registro();
+      if (vm.funciones.estoy("/tab/registro")){
+        vm.funciones.registro();
       }else{
-        funciones.edicion();
+        vm.funciones.edicion();
       }
     },
 
     mostrarForm: function(){
-      if (funciones.estoy("/tab/registro")){
+      if (vm.funciones.estoy("/tab/registro")){
 
       }else{
         Deportista.get($stateParams.deporId,$stateParams.entidad).then(function(response){
-          $scope.deportista = response;
+          vm.deportista = response;
+          vm.deportista.fecha_nacimiento = new Date(vm.deportista.fecha_nacimiento);
         }, function(response){
           console.log("error trayendo el depor");
         });
@@ -192,9 +197,9 @@ angular.module('starter.controllers', [])
     }
   };
 
-  $scope.gestionDeportista = funciones;
+  //$scope.gestionDeportista = funciones;
 
-  funciones.mostrarForm();
+  vm.funciones.mostrarForm();
 })
 
 .controller('IngresoCtrl', function($scope, Usuario,$window, $ionicPopup, $location){

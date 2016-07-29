@@ -73,6 +73,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       views: {
         'tab-registro': {
           templateUrl: 'templates/tab-registro.html',
+          controllerAs: "vm",
           controller: 'GestionDeportistaCtrl'
         }
       }
@@ -83,6 +84,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'tab-listado': {
         templateUrl: 'templates/tab-registro.html',
+        controllerAs: "vm",
         controller: 'GestionDeportistaCtrl'
       }
     }
