@@ -137,8 +137,6 @@ angular.module('starter.controllers', [])
 
     registro : function(){
       var deportista = vm.deportista;
-      deportista.fecha_nacimiento = new Date ($filter('date')(deportista.fecha_nacimiento, "yyyy-MM-dd"));
-      console.log(deportista);
       Deportista.registro(deportista).then(function(response){
         $ionicPopup.alert({
           title: "El registro ha sido correcto!",
@@ -156,9 +154,6 @@ angular.module('starter.controllers', [])
 
     edicion : function(){
       var deportista = vm.deportista;
-      deportista.fecha_nacimiento = new Date( $filter('date')(deportista.fecha_nacimiento, "yyyy-MM-dd"));
-      console.log(deportista);
-
       Deportista.edicion(deportista,$stateParams.deporId).then(function(response){
           $ionicPopup.alert({
             title: "La edición ha sido correcta!",
@@ -189,7 +184,7 @@ angular.module('starter.controllers', [])
       }else{
         Deportista.get($stateParams.deporId,$stateParams.entidad).then(function(response){
           vm.deportista = response;
-          vm.deportista.fecha_nacimiento = new Date(vm.deportista.fecha_nacimiento);
+          vm.deportista.fecha_nacimiento = vm.deportista.fecha_nacimiento;
         }, function(response){
           console.log("error trayendo el depor");
         });

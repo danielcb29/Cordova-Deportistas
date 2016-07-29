@@ -35,7 +35,7 @@
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Fecha de Nacimiento</span>
-          <input type="date" ng-model="vm.deportista.fecha_nacimiento">
+          <input type="text" placeholder="Formato de fecha yyyy-mm-dd" ng-model="vm.deportista.fecha_nacimiento">
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Video</span>
@@ -61,10 +61,12 @@
             <option value="Andorra">Andorra</option>
           </select>
         </label>
-        <label class="item item-input item-stacked-label">
+        <!--label class="item item-input item-stacked-label">
           <span class="input-label">Foto</span>
-          <input type="url" placeholder="Url de la foto" ng-model="vm.deportista.foto">
-        </label>
+          <div>
+            <input type="file" ng-model="vm.deportista.foto">
+          </div>
+        </label-->
         <label class="item item-input item-stacked-label">
           <span class="input-label">Telefono</span>
           <input type="text" placeholder="Telefono" ng-model="vm.deportista.telefono">
@@ -83,7 +85,7 @@
             <option value="Acacías">Acacías</option>
             <option value="Abriaquí">Abriaquí</option>
             <option value="Aberrojal">Aberrojal</option>
-            <option value="Medellin">Medellin</option>
+            <option value="Medellin">Medellín</option>
             <option value="Santiago de Cali">Santiago de Cali</option>
           </select>
         </label>
@@ -109,7 +111,7 @@
         </label>
           <ion-checkbox type="checkbox" ng-model="vm.deportista.lgtbi"> LGTBI? </ion-checkbox>
           <div class="button-bar bar-positive">
-            <button class="button button-positive" type="submit">Siguente <i class="ion-arrow-right-a"></i></button>
+            <button class="button button-positive" type="submit">Registrar <i class="ion-plus-circled"></i></button>
           </div>
       </form>
     </div>
