@@ -10,39 +10,60 @@
       <form id="form-deportista" ng-submit="vm.funciones.index()">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Nombres</span>
-          <input type="text" placeholder="Nombres" ng-model="vm.deportista.nombres">
         </label>
+        <div class="item item-input">
+          <input type="text" placeholder="Nombres" ng-model="vm.deportista.nombres">
+        </div>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Apellidos</span>
-          <input type="text" placeholder="Apellidos" ng-model="vm.deportista.apellidos">
         </label>
-        <label class="item item-input item-select">
+        <div class="item item-input">
+          <input type="text" placeholder="Apellidos" ng-model="vm.deportista.apellidos">
+        </div>
+        <label class="item item-input item-stacked-label">
           <span class="input-label">Genero</span>
-          <div>
+        </label>
+        <div class="item item-input item-select">
+            <span class="input-label">Seleccione una opcion...</span>
             <select ng-model="vm.deportista.genero">
               <option value="MUJER">FEMENINO</option>
               <option value="HOMBRE">MASCULINO</option>
             </select>
-          </div>
-        </label>
+        </div>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Tipo Identificación</span>
-          <input type="text" placeholder="Tipo Documento" ng-model="vm.deportista.tipo_id">
         </label>
+        <div class="item item-input">
+          <input type="text" placeholder="Tipo Documento" ng-model="vm.deportista.tipo_id">
+        </div>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Identificación</span>
-          <input type="text" placeholder="Identificación" ng-model="vm.deportista.identificacion">
         </label>
+        <div class="item item-input">
+          <input type="text" placeholder="Identificación" ng-model="vm.deportista.identificacion">
+        </div>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Fecha de Nacimiento</span>
-          <input type="text" placeholder="Formato de fecha yyyy-mm-dd" ng-model="vm.deportista.fecha_nacimiento">
         </label>
+        <div class="item item-input">
+          <input type="text" placeholder="Formato de fecha yyyy-mm-dd" ng-model="vm.deportista.fecha_nacimiento">
+        </div>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Video</span>
-          <input type="url" placeholder="Url del video youtube" ng-model="vm.deportista.video">
         </label>
-        <label class="item item-input item-select">
+        <div class="item item-input">
+          <input type="url" placeholder="Url del video youtube" ng-model="vm.deportista.video">
+        </div>
+
+        <label class="item item-input item-stacked-label">
           <span class="input-label">Disciplinas Deportivas</span>
+        </label>
+        <div class="item item-input item-select">
+          <span class="input-label">Seleccione una o varias opciones...</span>
           <select ng-model="vm.deportista.disciplinas" multiple="true" ng-multiple="true">
             <option value="Ciclismo">Ciclismo</option>
             <option value="Voleibol">Voleibol</option>
@@ -50,9 +71,13 @@
             <option value="Patinaje">Patinaje</option>
             <option value="Fútbol">Fútbol</option>
           </select>
-        </label>
-        <label class="item item-input item-select">
+        </div>
+
+        <label class="item item-input item-stacked-label">
           <span class="input-label">Nacionalidad</span>
+        </label>
+        <div class="item item-input item-select">
+          <span class="input-label">Seleccione una o varias opciones...</span>
           <select ng-model="vm.deportista.nacionalidad" multiple="true" ng-multiple="true">
             <option value="Colombia">Colombia</option>
             <option value="España">España</option>
@@ -60,27 +85,34 @@
             <option value="Albania">Albania</option>
             <option value="Andorra">Andorra</option>
           </select>
-        </label>
-        <!--label class="item item-input item-stacked-label">
-          <span class="input-label">Foto</span>
-          <div>
-            <input type="file" ng-model="vm.deportista.foto">
-          </div>
-        </label-->
+        </div>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Telefono</span>
-          <input type="text" placeholder="Telefono" ng-model="vm.deportista.telefono">
         </label>
+        <div class="item item-input">
+          <input type="text" placeholder="Telefono" ng-model="vm.deportista.telefono">
+        </div>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Dirección</span>
-          <input type="text" placeholder="Direccioón" ng-model="vm.deportista.direccion">
         </label>
+        <div class="item item-input">
+          <input type="text" placeholder="Direccioón" ng-model="vm.deportista.direccion">
+        </div>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Email</span>
-          <input type="text" placeholder="john@suhr.com" ng-model="vm.deportista.email">
         </label>
-        <label class="item item-input item-select">
+        <div class="item item-input">
+          <input type="text" placeholder="john@suhr.com" ng-model="vm.deportista.email">
+        </div>
+
+        <label class="item item-input item-stacked-label">
           <span class="input-label">Ciudad</span>
+        </label>
+        <div class="item item-input item-select">
+          <span class="input-label">Seleccione una opcion...</span>
           <select ng-model="vm.deportista.ciudad_residencia">
             <option value="Acacías">Acacías</option>
             <option value="Abriaquí">Abriaquí</option>
@@ -88,17 +120,27 @@
             <option value="Medellin">Medellín</option>
             <option value="Santiago de Cali">Santiago de Cali</option>
           </select>
-        </label>
+        </div>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Barrio</span>
-          <input type="text" placeholder="Barrio" ng-model="vm.deportista.barrio">
         </label>
+        <div class="item item-input">
+          <input type="text" placeholder="Barrio" ng-model="vm.deportista.barrio">
+        </div>
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">Comuna</span>
-          <input type="text" placeholder="Comuna" ng-model="vm.deportista.comuna">
         </label>
-        <label class="item item-input item-select">
+        <div class="item item-input">
+          <input type="text" placeholder="Comuna" ng-model="vm.deportista.comuna">
+        </div>
+
+        <label class="item item-input item-stacked-label">
           <span class="input-label">Etnia</span>
+        </label>
+        <div class="item item-input item-select">
+          <span class="input-label">Seleccione una opcion...</span>
           <select ng-model="vm.deportista.etnia">
             <option value="MESTIZO">MESTIZO</option>
             <option value="AFROCOLOMBIANO">AFROCOLOMBIANO</option>
@@ -108,8 +150,11 @@
             <option value="PALENQUERO">PALENQUERO</option>
             <option value="RAIZAL">RAIZAL</option>
           </select>
+        </div>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">LGTBI?</span>
         </label>
-          <ion-checkbox type="checkbox" ng-model="vm.deportista.lgtbi"> LGTBI? </ion-checkbox>
+          <ion-checkbox type="checkbox" ng-model="vm.deportista.lgtbi"><span class="input-label">Seleccione la opción si es verdadero</span>  </ion-checkbox>
           <div class="button-bar bar-positive">
             <button class="button button-positive" type="submit">Registrar <i class="ion-plus-circled"></i></button>
           </div>

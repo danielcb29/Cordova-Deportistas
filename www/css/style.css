@@ -1,1 +1,8 @@
 /* Empty. Add your own CSS if you like */
+.item-stacked-label{
+  background-color: #ddd;
+
+}
+.input-label{
+  color: #676a6c;
+}
