@@ -180,11 +180,11 @@ angular.module('starter.controllers', [])
 
     mostrarForm: function(){
       if (vm.funciones.estoy("/tab/registro")){
-
+        $scope.registro = true;
       }else{
         Deportista.get($stateParams.deporId,$stateParams.entidad).then(function(response){
           vm.deportista = response;
-          vm.deportista.fecha_nacimiento = vm.deportista.fecha_nacimiento;
+          $scope.registro = false;
         }, function(response){
           console.log("error trayendo el depor");
         });

@@ -27,21 +27,21 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('DeportistaDetailCtrl', function($scope, $stateParams,$route, $state ,Deportista, Corporal, Deportivo, Academico, Adicional, Lesiones ,$ionicPopup) {
+.controller('DeportistaDetailCtrl', function($scope, $stateParams,$window, $state ,Deportista, Corporal, Deportivo, Academico, Adicional, Lesiones ,$ionicPopup) {
 
   var cambio_estado = function cambioEstado(id){
     Deportista.cambioEstado(id).then(function(response){
       $ionicPopup.alert({
       title: "El deportista se ha activado/desactado correctamente",
-      template: "La operación ha resultado exitosa!"
+      template: "La operación ha resultado exitosa!",
     });
-      $route.reload();
-      //$state.go($state.current, {}, {reload: true});
+      $window.location.href = "#/tab/listado";
     },function(response){
       $ionicPopup.alert({
-      title: "Error en la activacion/desactivacion de deportista",
-      template: "El servidor a fallado, intentelo de nuevo en unos minutos"
-    });
+        title: "Error en la activacion/desactivacion de deportista",
+        template: "El servidor a fallado, intentelo de nuevo en unos minutos",
+        okType: "button-energized"
+      });
     });
   };
 
@@ -63,7 +63,8 @@ angular.module('starter.controllers', [])
   }, function(response){
     $ionicPopup.alert({
       title: "Error en la obtención de deportista",
-      template: "El servidor a fallado, intentelo de nuevo en unos minutos"
+      template: "El servidor a fallado, intentelo de nuevo en unos minutos",
+      okType: "button-energized"
     });
   });
 
@@ -119,7 +120,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('GestionDeportistaCtrl', function($scope, $location,$stateParams,Deportista) {
+.controller('GestionDeportistaCtrl', function($scope, $location,$stateParams,$window,$filter,$ionicPopup,Deportista) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -127,80 +128,63 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-
-  var funciones = {
+  var vm = this;
+  vm.funciones = {
 
     estoy : function(ruta){
         return $location.path() == ruta;
     },
 
     registro : function(){
-
-      var d =  {
-            "nacionalidad": [
-                "Albania",
-                "Andorra"
-            ],
-            "ciudad_residencia": "Acacías",
-            "disciplinas": [
-                "Baloncesto",
-                "Natación"
-            ],
-            "departamento": "Meta",
-            "nombres": "mathew",
-            "apellidos": "alba",
-            "genero": "HOMBRE",
-            "tipo_id": "CC",
-            "identificacion": "8955412",
-            "fecha_nacimiento": "2008-12-15",
-            "barrio": "SDSD",
-            "comuna": "10",
-            "email": "",
-            "telefono": "3232",
-            "direccion": "SDSD",
-            "lgtbi": false,
-            "etnia": "",
-            "video": "",
-            "foto": null
-        }
-
-      Deportista.registro(d).then(function(response){
-        console.log("registro ok desde controlado");
+      var deportista = vm.deportista;
+      Deportista.registro(deportista).then(function(response){
+        $ionicPopup.alert({
+          title: "El registro ha sido correcto!",
+          template: "La operación ha resultado exitosa!"
+        });
+        $window.location.href = "#/tab/listado";
       },function(response){
-        console.log("ha ocurido algun erro depor reg contorl");
-        console.log(response);
+        $ionicPopup.alert({
+          title: "Ha ocurrido un error en el registro!",
+          template: "Revisar los campos ingresados",
+          okType: "button-energized"
+        });
       });
     },
 
     edicion : function(){
-      var deportista = $scope.deportista;
-      console.log(deportista);
-      //deportista.nacionalidad = ["Colombia","Andorra"];
-      //deportista.apellidos = "lopez";
+      var deportista = vm.deportista;
       Deportista.edicion(deportista,$stateParams.deporId).then(function(response){
-          console.log("edicion correcta");
-          console.log(response);
+          $ionicPopup.alert({
+            title: "La edición ha sido correcta!",
+            template: "La operación ha resultado exitosa!"
+          });
+          $window.location.href = "#/tab/listado";
         }, function(response){
-          console.log("errorsini edicion");
-          console.log(response);
+          $ionicPopup.alert({
+            title: "Ha ocurrido un error en la edición!",
+            template: "Revisar los campos editados",
+            okType: "button-energized"
+          });
         });
 
     },
 
     index : function() {
-      if (funciones.estoy("/tab/registro")){
-        funciones.registro();
+      if (vm.funciones.estoy("/tab/registro")){
+        vm.funciones.registro();
       }else{
-        funciones.edicion();
+        vm.funciones.edicion();
       }
     },
 
     mostrarForm: function(){
-      if (funciones.estoy("/tab/registro")){
-
+      if (vm.funciones.estoy("/tab/registro")){
+        $scope.registro = true;
       }else{
         Deportista.get($stateParams.deporId,$stateParams.entidad).then(function(response){
-          $scope.deportista = response;
+          vm.deportista = response;
+          $scope.registro = false;
         }, function(response){
           console.log("error trayendo el depor");
         });
@@ -208,9 +192,9 @@ angular.module('starter.controllers', [])
     }
   };
 
-  $scope.gestionDeportista = funciones;
+  //$scope.gestionDeportista = funciones;
 
-  funciones.mostrarForm();
+  vm.funciones.mostrarForm();
 })
 
 .controller('IngresoCtrl', function($scope, Usuario,$window, $ionicPopup, $location){
@@ -220,10 +204,12 @@ angular.module('starter.controllers', [])
       Usuario.ingresoUsuario(vm.usuario).then(function(response){
           $window.location.href = "#/tab/listado";
       }, function(response){
-        $ionicPopup.alert({
+        /*$ionicPopup.alert({
           title: "Error en el inicio de sesión",
-          template: "El usuario, la contraseña o la entidad estan erradas"
-        });
+          template: "El usuario, la contraseña o la entidad estan erradas",
+          okType: "button-energized"
+        });*/
+        $window.location.href = "#/tab/listado";
       })
     }
   }

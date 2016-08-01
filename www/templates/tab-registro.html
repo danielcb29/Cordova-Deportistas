@@ -156,7 +156,8 @@
         </label>
           <ion-checkbox type="checkbox" ng-model="vm.deportista.lgtbi"><span class="input-label">Seleccione la opción si es verdadero</span>  </ion-checkbox>
           <div class="button-bar bar-positive">
-            <button class="button button-positive" type="submit">Registrar <i class="ion-plus-circled"></i></button>
+            <button ng-if="registro == true" class="button button-positive" type="submit">Registrar <i class="ion-plus-circled"></i></button>
+            <button ng-if="registro == false" class="button button-positive" type="submit">Guardar <i class="ion-android-checkmark-circle"></i></button>
           </div>
       </form>
     </div>
