@@ -5,4 +5,11 @@
 }
 .input-label{
   color: #676a6c;
+
+}
+.bold{
+  font-weight: bold;
+}
+.centro{
+  text-align:center;
 }
