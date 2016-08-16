@@ -204,12 +204,11 @@ angular.module('starter.controllers', [])
       Usuario.ingresoUsuario(vm.usuario).then(function(response){
           $window.location.href = "#/tab/listado";
       }, function(response){
-        /*$ionicPopup.alert({
+        $ionicPopup.alert({
           title: "Error en el inicio de sesión",
           template: "El usuario, la contraseña o la entidad estan erradas",
           okType: "button-energized"
-        });*/
-        $window.location.href = "#/tab/listado";
+        });
       })
     }
   }
