@@ -94,7 +94,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: '/salir',
     views: {
       'tab-salir': {
-        templateUrl: 'templates/tab-account.html',
+        templateUrl: 'templates/ingreso.html',
         controller: 'SalirCtrl'
       }
     }
