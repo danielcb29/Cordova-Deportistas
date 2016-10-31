@@ -15,6 +15,7 @@ angular.module('starter.controllers', [])
       $scope.despues = response.next;
       $scope.getPage = get_page;
     },function(response){
+      console.error(JSON.stringify(response));
       $ionicPopup.alert({
         title: "Error en la obtención de deportistas",
         template: "El servidor a fallado, intentelo de nuevo en unos minutos"
@@ -204,6 +205,8 @@ angular.module('starter.controllers', [])
       Usuario.ingresoUsuario(vm.usuario).then(function(response){
           $window.location.href = "#/tab/listado";
       }, function(response){
+        console.error("error del servidor");
+        console.error(JSON.stringify(response));
         $ionicPopup.alert({
           title: "Error en el inicio de sesión",
           template: "El usuario, la contraseña o la entidad estan erradas",
